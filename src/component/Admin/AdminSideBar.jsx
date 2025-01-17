@@ -8,14 +8,13 @@ import {
   FaUsers,
   FaTractor,
   FaWarehouse,
-} from "react-icons/fa"; // Import necessary icons
+} from "react-icons/fa";
 import AdminNavbar from "./AdminNavbar";
 
 function AdminSideBar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const location = useLocation(); // Get current path for active menu highlighting
+  const location = useLocation();
 
-  // Menu items with corresponding icons
   const menuItems = [
     { name: "Dashboard", path: "/", icon: <FaTachometerAlt /> },
     { name: "Customer", path: "/customer", icon: <FaUsers /> },
@@ -29,15 +28,17 @@ function AdminSideBar() {
 
   return (
     <div>
-      <AdminNavbar />
+      {/* Admin Navbar */}
+      <AdminNavbar toggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
+
       <div className="flex h-screen">
         {/* Sidebar */}
         <div
-          className={`bg-[#34a853] text-white w-64 p-4 flex-shrink-0 transition-all duration-300 ${
-            sidebarOpen ? "block" : "hidden md:block"
-          }`}
+          className={`bg-[#34a853] text-white w-64 p-4 fixed top-0 left-0 h-full z-50 transition-all duration-300 md:block ${
+            sidebarOpen ? "block" : "hidden"
+          } md:relative md:w-64`}
         >
-          {/* Sidebar Close Button (For mobile) */}
+          {/* Close Button for Mobile */}
           <div className="md:hidden">
             <button
               onClick={() => setSidebarOpen(false)}
@@ -46,8 +47,7 @@ function AdminSideBar() {
               <FaTimes />
             </button>
           </div>
-
-          {/* Menu Items */}
+          {/* Sidebar Menu Items */}
           <ul className="space-y-4">
             {menuItems.map((item) => (
               <li key={item.name}>
@@ -58,18 +58,16 @@ function AdminSideBar() {
                     location.pathname === item.path ? "bg-[#fec52b]" : ""
                   }`}
                 >
-                  {item.icon} {/* Render the icon */}
-                  <span>{item.name}</span> {/* Render the menu name */}
+                  {item.icon}
+                  <span>{item.name}</span>
                 </Link>
               </li>
             ))}
-
-            {/* Logout */}
             <li
-              onClick={() => console.log("Logged out")} // Add your logout logic here
+              onClick={() => console.log("Logged out")}
               className="cursor-pointer p-3 rounded-lg text-sm font-medium text-black transition-all flex items-center space-x-3"
             >
-              <FaUserAlt /> {/* Icon for logout */}
+              <FaUserAlt />
               <span>Logout</span>
             </li>
           </ul>
@@ -86,8 +84,9 @@ function AdminSideBar() {
         </div>
 
         {/* Content Area */}
-        <div className="flex-1 p-6 bg-[#f0f0f0] overflow-y-auto">
-          <Outlet /> {/* Displays the active route's content */}
+        <div className="flex-1 p-2 bg-[#f0f0f0] overflow-y-auto ml-0">
+          {/* Outlet for page content */}
+          <Outlet />
         </div>
       </div>
     </div>
