@@ -74,7 +74,7 @@ function AdminSideBar() {
         </div>
 
         {/* Mobile Hamburger Button */}
-        <div className="md:hidden flex items-center p-4">
+        <div className="md:hidden hidden items-center p-4">
           <button
             onClick={() => setSidebarOpen(true)}
             className="text-white text-3xl"

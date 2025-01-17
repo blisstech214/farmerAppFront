@@ -40,7 +40,7 @@ const AdminNavbar = ({ toggleSidebar }) => {
       </div>
 
       {/* Right Section: User Actions (Desktop) */}
-      <div className="flex items-center space-x-4 sm:space-x-6 hidden lg:flex text-sm sm:text-base">
+      <div className="items-center space-x-4 sm:space-x-6 hidden lg:flex text-sm sm:text-base">
         <FaHome className="cursor-pointer" title="Home" />
         <FaChartLine className="cursor-pointer" title="Dashboard" />
         <FaEnvelope className="cursor-pointer" title="Messages" />
@@ -55,7 +55,7 @@ const AdminNavbar = ({ toggleSidebar }) => {
 
       {/* Mobile Menu: Show only when hamburger icon is clicked */}
       <div
-        className={`lg:hidden absolute top-16 left-0 w-full bg-purple-700 text-white p-4 ${
+        className={`lg:hidden absolute top-16 left-0 w-full bg-purple-700 text-black p-4 ${
           isMenuOpen ? "block" : "hidden"
         }`}
       >
